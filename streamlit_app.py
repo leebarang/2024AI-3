@@ -3,6 +3,7 @@ import streamlit as st
 from fastai.vision.all import *
 from PIL import Image
 import gdown
+import extract_yt_url
 
 # Google Drive 파일 ID
 file_id = '1Yhwkt1kuzFaCubaukRlbi54IM2FJSkMF'
@@ -52,6 +53,13 @@ def display_right_content(prediction, data):
     for i in range(3):
         with cols[i]:
             st.write(data['texts'][i])
+
+    st.write("텍스트를 입력해 보세요.")
+    text_input = st.text_input("텍스트 입력", "Break Out")
+    if text_input:
+        st.write(f"입력된 텍스트: {text_input}")
+        st.video(Extract_yt_url(text_input).toString())
+        st.caption(f"유튜브: {text_input}")
 
 # 모델 로드
 st.write("모델을 로드 중입니다. 잠시만 기다려주세요...")
