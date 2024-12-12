@@ -43,26 +43,29 @@ def display_right_content(prediction):
     st.write("### 관련 콘텐츠")
     cols = st.columns(3)
     
-    # 1st Row - pop-up botton
-    for i in range(3):
-        with cols[i]:
-            if st.button(f"{prediction} {search_dict[i]}"):
-                if i == 2: # 먹이 검색
-                    st.markdown(f'{search_results[i]}{prediction}+먹이', unsafe_allow_html=True)
-                st.markdown(f'{search_results[i]}{prediction}', unsafe_allow_html=True)
-
-    # 2nd Row - YouTube Videos
+    # 1st Row - YouTube Videos
     for i in range(3):
         with cols[i]:
             st.video(Extract_yt_url(prediction,3).to_list()[i])
             st.caption(f"유튜브: {prediction}")
 
+    # 2nd Row - pop-up botton
     st.write("### 직접 유튜브 영상 찾기")
     text_input = st.text_input("텍스트 입력", prediction)
     if text_input:
         st.write(f"입력된 텍스트: {text_input}")
         st.video(Extract_yt_url(text_input).to_string())
         st.caption(f"유튜브: {text_input}")
+
+    # 3rd Row - pop-up botton
+    st.write("### 추가 정보")
+    for i in range(3):
+        with cols[i]:
+            if st.button(f"{prediction} {search_dict[i]}"):
+                if i == 2: # 먹이 검색
+                    st.markdown(f'{search_results[i]}{prediction}+먹이', unsafe_allow_html=True)
+                else:
+                    st.markdown(f'{search_results[i]}{prediction}', unsafe_allow_html=True)
 
 # 모델 로드
 st.write("모델을 로드 중입니다. 잠시만 기다려주세요...")
