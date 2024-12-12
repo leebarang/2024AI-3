@@ -36,36 +36,36 @@ def display_left_content(image, prediction, probs, labels):
                 </div>
         """, unsafe_allow_html=True)
 
-search_dict = {0:"유튜브 검색 링크", 1:"위키 백과", 2:"먹이 구매 (쿠팡)"}
-search_results = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
+search_lists = {"유튜브 검색 링크", "위키 백과", "관련 상품/먹이 구매 (쿠팡)"}
+search_links = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
 
 def display_right_content(prediction):
-    st.write("### 관련 콘텐츠")
     cols = st.columns(3)
-    
+    st.write("### 관련 콘텐츠")
     # 1st Row - YouTube Videos
     for i in range(3):
         with cols[i]:
             st.video(Extract_yt_url(prediction,3).to_list()[i])
             st.caption(f"유튜브: {prediction}")
 
-    # 2nd Row - pop-up botton
+    # 2nd Row - markdown botton
+    for i in range(3):
+        with cols[i]:
+            st.markdown(f"""
+                <a href={search_links[i]}{prediction} target="_blank">
+                    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
+                        {prediction} {search_lists[i]}
+                    </button>
+                </a>
+            """, unsafe_allow_html=True)
+
     st.write("### 직접 유튜브 영상 찾기")
     text_input = st.text_input("텍스트 입력", prediction)
+    # 3rd Row - pop-up botton
     if text_input:
         st.write(f"입력된 텍스트: {text_input}")
         st.video(Extract_yt_url(text_input).to_string())
         st.caption(f"유튜브: {text_input}")
-
-    # 3rd Row - pop-up botton
-    st.write("### 추가 정보")
-    for i in range(3):
-        with cols[i]:
-            if st.button(f"{prediction}\n{search_dict[i]}"):
-                if i == 2: # 먹이 검색
-                    st.markdown(f'{search_results[i]}{prediction}+먹이', unsafe_allow_html=True)
-                else:
-                    st.markdown(f'{search_results[i]}{prediction}', unsafe_allow_html=True)
 
 # 모델 로드
 st.write("모델을 로드 중입니다. 잠시만 기다려주세요...")
