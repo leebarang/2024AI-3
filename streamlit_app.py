@@ -51,13 +51,15 @@ def display_right_content(prediction):
     # 2nd Row - markdown botton
     for i in range(3):
         with cols[i]:
-            st.markdown("""
-                <a href={search_links[i]}+{prediction} target="_blank">
+            # f-string으로 URL 및 버튼 텍스트 생성
+            button_html = f"""
+                <a href="{search_links[i]}{prediction}" target="_blank">
                     <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
-                        {prediction}+{search_lists[i]}
+                        {prediction}{search_lists[i]}
                     </button>
                 </a>
-            """, unsafe_allow_html=True)
+            """
+            st.markdown(button_html, unsafe_allow_html=True)
 
     st.write("### 직접 유튜브 영상 찾기")
     text_input = st.text_input("텍스트 입력", prediction)
