@@ -36,7 +36,7 @@ def display_left_content(image, prediction, probs, labels):
                 </div>
         """, unsafe_allow_html=True)
 
-search_lists = {"유튜브 검색 링크", "위키 백과", "관련 상품/먹이 구매 (쿠팡)"}
+search_lists = {" 유튜브 검색 링크", " 위키 백과", " 관련 상품/먹이 구매 (쿠팡)"}
 search_links = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
 
 def display_right_content(prediction):
@@ -54,7 +54,7 @@ def display_right_content(prediction):
             st.markdown(f"""
                 <a href={search_links[i]}+{prediction} target="_blank">
                     <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
-                        {prediction} {search_lists[i]}
+                        {prediction}+{search_lists[i]}
                     </button>
                 </a>
             """, unsafe_allow_html=True)
