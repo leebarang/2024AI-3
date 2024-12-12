@@ -36,7 +36,7 @@ def display_left_content(image, prediction, probs, labels):
                 </div>
         """, unsafe_allow_html=True)
 
-search_lists = [" 유튜브\n검색 링크", "\n위키 백과", " 관련 \n상품/먹이\n구매 (쿠팡)"]
+search_lists = [" 유튜브", "\n위키백과", " 관련 \n상품/먹이\n구매"]
 search_links = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
 
 def display_right_content(prediction):
