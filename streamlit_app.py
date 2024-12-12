@@ -51,7 +51,7 @@ def display_right_content(prediction):
     # 2nd Row - markdown botton
     for i in range(3):
         with cols[i]:
-            st.markdown(f"""
+            st.markdown("""
                 <a href={search_links[i]}+{prediction} target="_blank">
                     <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
                         {prediction}+{search_lists[i]}
