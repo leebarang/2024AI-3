@@ -24,7 +24,7 @@ def display_left_content(image, prediction, probs, labels):
     if image is not None:
         st.image(image, caption="업로드된 이미지", use_column_width=True)
     st.write(f"예측된 클래스: {prediction}")
-    st.markdown("<h4>클래스별 확률:</h4>", unsafe_allow_html=True)
+    st.markdown("<h4>예측 확률</h4>", unsafe_allow_html=True)
     for label, prob in zip(labels, probs):
         st.markdown(f"""
             <div style="background-color: #f0f0f0; border-radius: 5px; padding: 5px; margin: 5px 0;">
@@ -41,18 +41,10 @@ def display_right_content(prediction):
     cols = st.columns(3)
 
     # 1st Row - pop-up botton
-    if prediction == "강아지":
-        st.button("강아지")
-        if st.button("강아지"):
-            st.write("강아지는 귀엽습니다.")
-    elif prediction == "고양이":
-        st.button("고양이")
-        if st.button("고양이"):
-            st.write("고양이는 귀엽습니다.")
-    elif prediction == "토끼":
-        st.button("고양이")
-        if st.button("토끼"):
-            st.write("토끼는 귀엽습니다.")
+    for i in range(3):
+        with cols[i]:
+            st.button(f"{prediction}")
+            st.markdown(f'[{prediction} 관련 링크 {i}](https://example.com/dog1)', unsafe_allow_html=True)
 
     # 2nd Row - YouTube Videos
     for i in range(3):
