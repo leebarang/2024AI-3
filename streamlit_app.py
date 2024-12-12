@@ -3,7 +3,7 @@ import streamlit as st
 from fastai.vision.all import *
 from PIL import Image
 import gdown
-import extract_yt_url
+import Extract_yt_url from extract_yt_url
 
 # Google Drive 파일 ID
 file_id = '1Yhwkt1kuzFaCubaukRlbi54IM2FJSkMF'
