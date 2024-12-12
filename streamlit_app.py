@@ -36,26 +36,29 @@ def display_left_content(image, prediction, probs, labels):
                 </div>
         """, unsafe_allow_html=True)
 
-def display_right_content(prediction, data):
+def display_right_content(prediction):
     st.write("### 오른쪽: 동적 분류 결과")
     cols = st.columns(3)
 
-    # 1st Row - Images
-    for i in range(3):
-        with cols[i]:
-            st.image(data['images'][i], caption=f"이미지: {prediction}", use_column_width=True)
+    # 1st Row - pop-up botton
+    if prediction == "강아지":
+        if st.button("강아지"):
+            st.write("강아지는 귀엽습니다.")
+    elif prediction == "고양이":
+        if st.button("고양이"):
+            st.write("고양이는 귀엽습니다.")
+    elif prediction == "토끼":
+        if st.button("토끼"):
+            st.write("토끼는 귀엽습니다.")
+
     # 2nd Row - YouTube Videos
     for i in range(3):
         with cols[i]:
             st.video(Extract_yt_url(prediction,3).to_list()[i])
             st.caption(f"유튜브: {prediction}")
-    # 3rd Row - Text
-    for i in range(3):
-        with cols[i]:
-            st.write(data['texts'][i])
 
-    st.write("텍스트를 입력해 보세요.")
-    text_input = st.text_input("텍스트 입력", "Break Out")
+    st.write("직접 유튜브 영상 찾기")
+    text_input = st.text_input("텍스트 입력", prediction)
     if text_input:
         st.write(f"입력된 텍스트: {text_input}")
         st.video(Extract_yt_url(text_input).to_string())
@@ -152,10 +155,5 @@ if uploaded_file is not None:
 
     with right_column:
         # 분류 결과에 따른 콘텐츠 선택
-        data = content_data.get(prediction, {
-            'images': ["https://via.placeholder.com/300"] * 3,
-            'videos': ["https://www.youtube.com/watch?v=3JZ_D3ELwOQ"] * 3,
-            'texts': ["기본 텍스트"] * 3
-        })
-        display_right_content(prediction, data)
+        display_right_content(prediction)
 
