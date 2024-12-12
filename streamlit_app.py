@@ -61,7 +61,7 @@ def display_right_content(prediction):
     st.write("### 추가 정보")
     for i in range(3):
         with cols[i]:
-            if st.button(f"{prediction} {search_dict[i]}"):
+            if st.button(f"{prediction}\n{search_dict[i]}"):
                 if i == 2: # 먹이 검색
                     st.markdown(f'{search_results[i]}{prediction}+먹이', unsafe_allow_html=True)
                 else:
