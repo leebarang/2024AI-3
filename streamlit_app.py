@@ -20,7 +20,7 @@ def load_model_from_drive(file_id):
     return learner
 
 def display_left_content(image, prediction, probs, labels):
-    st.write("### 왼쪽: 기존 출력 결과")
+    st.write("### 예측 결과")
     if image is not None:
         st.image(image, caption="업로드된 이미지", use_column_width=True)
     st.write(f"예측된 클래스: {prediction}")
@@ -37,17 +37,20 @@ def display_left_content(image, prediction, probs, labels):
         """, unsafe_allow_html=True)
 
 def display_right_content(prediction):
-    st.write("### 오른쪽: 동적 분류 결과")
+    st.write("### 관련 콘텐츠")
     cols = st.columns(3)
 
     # 1st Row - pop-up botton
     if prediction == "강아지":
+        st.button("강아지")
         if st.button("강아지"):
             st.write("강아지는 귀엽습니다.")
     elif prediction == "고양이":
+        st.button("고양이")
         if st.button("고양이"):
             st.write("고양이는 귀엽습니다.")
     elif prediction == "토끼":
+        st.button("고양이")
         if st.button("토끼"):
             st.write("토끼는 귀엽습니다.")
 
@@ -57,7 +60,7 @@ def display_right_content(prediction):
             st.video(Extract_yt_url(prediction,3).to_list()[i])
             st.caption(f"유튜브: {prediction}")
 
-    st.write("직접 유튜브 영상 찾기")
+    st.write("### 직접 유튜브 영상 찾기")
     text_input = st.text_input("텍스트 입력", prediction)
     if text_input:
         st.write(f"입력된 텍스트: {text_input}")
