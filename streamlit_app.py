@@ -47,7 +47,7 @@ def display_right_content(prediction, data):
     # 2nd Row - YouTube Videos
     for i in range(3):
         with cols[i]:
-            st.video(data['videos'][i])
+            st.video(Extract(prediction,3).to_list()[i])
             st.caption(f"유튜브: {prediction}")
     # 3rd Row - Text
     for i in range(3):
