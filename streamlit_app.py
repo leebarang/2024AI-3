@@ -36,15 +36,20 @@ def display_left_content(image, prediction, probs, labels):
                 </div>
         """, unsafe_allow_html=True)
 
+search_dict = {0:"유튜브 검색 링크", 1:"위키 백과", 2:"먹이 구매 (쿠팡)"}
+search_results = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
+
 def display_right_content(prediction):
     st.write("### 관련 콘텐츠")
     cols = st.columns(3)
-
+    
     # 1st Row - pop-up botton
     for i in range(3):
         with cols[i]:
-            if st.button(f"{prediction} [{i}]"):
-                st.markdown(f'[{prediction} 관련 링크 {i}](https://example.com/dog1)', unsafe_allow_html=True)
+            if st.button(f"{prediction} {search_dict[i]}"):
+                if i == 2: # 먹이 검색
+                    st.markdown(f'{search_results[i]}{prediction}+먹이', unsafe_allow_html=True)
+                st.markdown(f'{search_results[i]}{prediction}', unsafe_allow_html=True)
 
     # 2nd Row - YouTube Videos
     for i in range(3):
