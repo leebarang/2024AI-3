@@ -40,8 +40,8 @@ search_lists = {"유튜브 검색 링크", "위키 백과", "관련 상품/먹�
 search_links = ['https://www.youtube.com/results?search_query=', 'https://ko.wikipedia.org/wiki/', 'https://www.coupang.com/np/search?component=&q=']
 
 def display_right_content(prediction):
-    cols = st.columns(3)
     st.write("### 관련 콘텐츠")
+    cols = st.columns(3)
     # 1st Row - YouTube Videos
     for i in range(3):
         with cols[i]:
@@ -52,7 +52,7 @@ def display_right_content(prediction):
     for i in range(3):
         with cols[i]:
             st.markdown(f"""
-                <a href={search_links[i]}{prediction} target="_blank">
+                <a href={search_links[i]}+{prediction} target="_blank">
                     <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
                         {prediction} {search_lists[i]}
                     </button>
