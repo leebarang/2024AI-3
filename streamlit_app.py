@@ -58,7 +58,7 @@ def display_right_content(prediction, data):
     text_input = st.text_input("텍스트 입력", "Break Out")
     if text_input:
         st.write(f"입력된 텍스트: {text_input}")
-        st.video(Extract_yt_url(text_input).toString())
+        st.video(Extract_yt_url(text_input).to_string())
         st.caption(f"유튜브: {text_input}")
 
 # 모델 로드
