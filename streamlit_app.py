@@ -43,8 +43,8 @@ def display_right_content(prediction):
     # 1st Row - pop-up botton
     for i in range(3):
         with cols[i]:
-            st.button(f"{prediction}")
-            st.markdown(f'[{prediction} 관련 링크 {i}](https://example.com/dog1)', unsafe_allow_html=True)
+            if st.button(f"{prediction}"):
+                st.markdown(f'[{prediction} 관련 링크 {i}](https://example.com/dog1)', unsafe_allow_html=True)
 
     # 2nd Row - YouTube Videos
     for i in range(3):
